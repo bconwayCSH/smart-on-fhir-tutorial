@@ -1,4 +1,3 @@
-
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
@@ -30,10 +29,12 @@
           var gender = patient.gender;
 			console.log("smart");
 			console.log(smart);
-			console.log("byCodes");
-			console.log(byCodes);
 			console.log("patient");
 			console.log(patient);
+			console.log("pt");
+			console.log(pt);
+			console.log("obv");
+			console.log(obv);
           var fname = '';
           var lname = '';
 
@@ -65,7 +66,8 @@
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
-
+		  console.log("p")
+		  console.log(p)
           ret.resolve(p);
         });
       } else {
