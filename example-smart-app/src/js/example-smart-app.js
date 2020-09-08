@@ -1,3 +1,4 @@
+console.log("Updated 09082020 1547")
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
@@ -29,6 +30,10 @@
           var gender = patient.gender;
 			console.log("smart");
 			console.log(smart);
+			console.log("byCodes");
+			console.log(byCodes);
+			console.log("patient");
+			console.log(patient);
           var fname = '';
           var lname = '';
 
