@@ -1,3 +1,4 @@
+console.log("weight and temp added");
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
@@ -15,9 +16,16 @@
                     type: 'Observation',
                     query: {
                       code: {
-                        $or: ['http://loinc.org|8302-2', 'http://loinc.org|8462-4',
-                              'http://loinc.org|8480-6', 'http://loinc.org|2085-9',
-                              'http://loinc.org|2089-1', 'http://loinc.org|55284-4']
+                        $or: [
+								'http://loinc.org|8302-2',
+								'http://loinc.org|8462-4',
+								'http://loinc.org|8480-6',
+								'http://loinc.org|2085-9',
+								'http://loinc.org|3141-9',
+								'http://loinc.org|2089-1',
+								'http://loinc.org|55284-4',
+								'http://loinc.org|8310-5'
+							]
                       }
                     }
                   });
@@ -44,6 +52,11 @@
           }
 
           var height = byCodes('8302-2');
+		  var weight = byCodes('3141-9');
+		  var temp = byCodes('8310-5');
+		  console.log("height = "+ height);
+		  console.log("weight = "+ weight);
+		  console.log("temp = "+ temp);
           var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
@@ -55,6 +68,8 @@
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
+		  p.weight = getQuantityValueAndUnit(weight[0]);
+		  p.temp = getQuantityValueAndUnit(temp[0]);
 
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
@@ -91,6 +106,8 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
+	  weght: {value: ''},
+	  temp: {value: ''},
     };
   }
 
