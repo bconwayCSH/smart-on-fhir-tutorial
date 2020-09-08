@@ -1,4 +1,4 @@
-console.log("Updated 09082020 1547")
+
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
