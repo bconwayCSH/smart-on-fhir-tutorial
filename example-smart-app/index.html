@@ -6,13 +6,15 @@
     <title>Example-SMART-App - Created by bconwayCSH</title>
 
     <link rel='stylesheet' type='text/css' href='./src/css/example-smart-app.css'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link rel='stylesheet' type='text/css' href='./lib/css/bootstrap.css'>
     <!--
       Temporarily disable cerner-smart-embeddable-lib
       <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
     -->
   </head>
   <body>
-	<div>Last Update 09.08.2020 @ 1326 EST</div>
+	<div>Last Update 09.08.2020 @ 1400 EST</div>
     <div id='errors'>
     </div>
     <div id="loading" class="spinner">
@@ -83,7 +85,11 @@
     <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
     <!-- https://github.com/cerner/fhir-client-cerner-additions -->
     <script src='./lib/js/fhir-client-cerner-additions-1.0.0.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src='./lib/js/jquery-3.4.1.js'></script>
+	<script src='./lib/js/popper.min.js'></script>
+	<script src='./lib/js/bootstrap.js'></script>
+    
+	
     <script>
       extractData().then(
         //Display Patient Demographics and Observations if extractData was success
