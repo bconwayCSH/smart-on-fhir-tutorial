@@ -12,6 +12,22 @@ console.log("weight and temp added");
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
+		
+		var meds = smart.patient.api.fetchAll({
+                    type: 'MedicationOrder'
+                  });
+
+        $.when(pt, meds).fail(onError);
+		
+		$.when(pt, meds).done(function(patient, meds) {
+          var medCodes = smart.byCodes(meds, 'code');
+          var gender = patient.gender;
+			console.log("meds");
+			console.log(meds);
+
+        });
+		
+		
         var obv = smart.patient.api.fetchAll({
                     type: 'Observation',
                     query: {
@@ -31,7 +47,10 @@ console.log("weight and temp added");
                   });
 
         $.when(pt, obv).fail(onError);
-
+		
+		
+		
+		
         $.when(pt, obv).done(function(patient, obv) {
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
@@ -87,6 +106,15 @@ console.log("weight and temp added");
 		  console.log(p)
           ret.resolve(p);
         });
+		
+		
+		
+		
+		
+		
+		
+		
+		
       } else {
         onError();
       }
