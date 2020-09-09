@@ -1,4 +1,4 @@
-var version_num = 1.1;
+var version_num = 1.3;
 console.log("version "+ version_num);
 (function(window){
   window.extractData = function() {
@@ -57,14 +57,19 @@ console.log("version "+ version_num);
           var gender = patient.gender;
 			console.log("smart");
 			console.log(smart);
+			console.log(JSON.stringify(smart));
+			
 			console.log("patient");
 			console.log(patient);
-			console.log("stringify patient");
 			console.log(JSON.stringify(patient));
+			
 			console.log("pt");
 			console.log(pt);
+			console.log(JSON.stringify(pt));
+			
 			console.log("obv");
 			console.log(obv);
+			console.log(JSON.stringify(obv));
           var fname = '';
           var lname = '';
 
