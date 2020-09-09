@@ -1,4 +1,4 @@
-var version_num = 1.3;
+var version_num = 1.5;
 console.log("version "+ version_num);
 (function(window){
   window.extractData = function() {
@@ -14,6 +14,8 @@ console.log("version "+ version_num);
         var patient = smart.patient;
         var pt = patient.read();
 		
+		
+		//get medication information
 		var meds = smart.patient.api.fetchAll({
                     type: 'MedicationOrder'
                   });
@@ -23,12 +25,27 @@ console.log("version "+ version_num);
 		$.when(pt, meds).done(function(patient, meds) {
           var medCodes = smart.byCodes(meds, 'code');
           var gender = patient.gender;
-			console.log("meds");
-			console.log(meds);
+
+			
 
         });
 		
+		//get observation information
+		var obv = smart.patient.api.fetchAll({
+			type: 'Observation'
+        });
+
+        $.when(pt, obv).fail(onError);
 		
+		$.when(pt, obv).done(function(patient, obv) {
+          var medCodes = smart.byCodes(obv, 'code');
+			console.log("obv");
+			console.log(obv);
+			console.log(JSON.stringify(obv));
+
+        });
+		
+		/*
         var obv = smart.patient.api.fetchAll({
                     type: 'Observation',
                     query: {
@@ -114,10 +131,27 @@ console.log("version "+ version_num);
         });
 		
 		
+		*/
+		console.log("Log Info");
+		console.log("smart");
+		console.log(smart);
+		console.log(JSON.stringify(smart));
 		
+		console.log("patient");
+		console.log(patient);
+		console.log(JSON.stringify(patient));
 		
+		console.log("pt");
+		console.log(pt);
+		console.log(JSON.stringify(pt));
 		
+		console.log("obv");
+		console.log(obv);
+		console.log(JSON.stringify(obv));
 		
+		console.log("meds");
+		console.log(meds);
+		console.log(JSON.stringify(meds));
 		
 		
 		
