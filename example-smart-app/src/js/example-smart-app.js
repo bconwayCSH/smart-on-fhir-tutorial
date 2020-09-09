@@ -1,5 +1,6 @@
-var version_num = 1.5;
+var version_num = 1.6;
 console.log("version "+ version_num);
+version.innerHTML = version_num
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
