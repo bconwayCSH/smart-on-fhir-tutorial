@@ -1,4 +1,5 @@
-console.log("weight and temp added");
+var version_num = 1.1;
+console.log("version "+ version_num);
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
