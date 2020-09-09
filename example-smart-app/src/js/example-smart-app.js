@@ -39,6 +39,8 @@ console.log("weight and temp added");
 			console.log(smart);
 			console.log("patient");
 			console.log(patient);
+			console.log("stringify patient");
+			console.log(JSON.stringify(patient));
 			console.log("pt");
 			console.log(pt);
 			console.log("obv");
