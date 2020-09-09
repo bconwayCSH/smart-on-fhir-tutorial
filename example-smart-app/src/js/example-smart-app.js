@@ -1,4 +1,4 @@
-var version_num = 1.6;
+var version_num = 1.7;
 console.log("version "+ version_num);
 version.innerHTML = version_num
 (function(window){
@@ -15,6 +15,18 @@ version.innerHTML = version_num
         var patient = smart.patient;
         var pt = patient.read();
 		
+		console.log("smart");
+		console.log(smart);
+		console.log(JSON.stringify(smart));
+
+		console.log("patient");
+		console.log(patient);
+		console.log(JSON.stringify(patient));
+
+		console.log("pt");
+		console.log(pt);
+		console.log(JSON.stringify(pt));
+		
 		
 		//get medication information
 		var meds = smart.patient.api.fetchAll({
@@ -24,9 +36,14 @@ version.innerHTML = version_num
         $.when(pt, meds).fail(onError);
 		
 		$.when(pt, meds).done(function(patient, meds) {
-          var medCodes = smart.byCodes(meds, 'code');
-          var gender = patient.gender;
-
+        var medCodes = smart.byCodes(meds, 'code');
+			console.log("medCodes");
+			console.log(medCodes);
+			console.log(JSON.stringify(medCodes));
+			
+			console.log("meds");
+			console.log(meds);
+			console.log(JSON.stringify(meds));
 			
 
         });
@@ -38,13 +55,6 @@ version.innerHTML = version_num
 
         $.when(pt, obv).fail(onError);
 		
-		$.when(pt, obv).done(function(patient, obv) {
-          var medCodes = smart.byCodes(obv, 'code');
-			console.log("obv");
-			console.log(obv);
-			console.log(JSON.stringify(obv));
-
-        });
 		
 		/*
         var obv = smart.patient.api.fetchAll({
@@ -68,94 +78,59 @@ version.innerHTML = version_num
         $.when(pt, obv).fail(onError);
 		
 		
+		*/
 		
-		
-        $.when(pt, obv).done(function(patient, obv) {
-          var byCodes = smart.byCodes(obv, 'code');
-          var gender = patient.gender;
-			console.log("smart");
-			console.log(smart);
-			console.log(JSON.stringify(smart));
-			
-			console.log("patient");
-			console.log(patient);
-			console.log(JSON.stringify(patient));
-			
-			console.log("pt");
-			console.log(pt);
-			console.log(JSON.stringify(pt));
-			
+		$.when(pt, obv).done(function(patient, obv) {
+			var byCodes = smart.byCodes(obv, 'code');
+			var gender = patient.gender;
+
 			console.log("obv");
 			console.log(obv);
 			console.log(JSON.stringify(obv));
-          var fname = '';
-          var lname = '';
+			var fname = '';
+			var lname = '';
 
-          if (typeof patient.name[0] !== 'undefined') {
-            fname = patient.name[0].given.join(' ');
-            lname = patient.name[0].family.join(' ');
-          }
+			if (typeof patient.name[0] !== 'undefined') {
+				fname = patient.name[0].given.join(' ');
+				lname = patient.name[0].family.join(' ');
+			}
 
-          var height = byCodes('8302-2');
-		  var weight = byCodes('3141-9');
-		  var temp = byCodes('8310-5');
-		  console.log("height = "+ height);
-		  console.log("weight = "+ weight);
-		  console.log("temp = "+ temp);
-          var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
-          var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
-          var hdl = byCodes('2085-9');
-          var ldl = byCodes('2089-1');
+			var height = byCodes('8302-2');
+			var weight = byCodes('3141-9');
+			var temp = byCodes('8310-5');
+				console.log(height);
+				console.log(weight);
+				console.log(temp);
+			var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
+			var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
+			var hdl = byCodes('2085-9');
+			var ldl = byCodes('2089-1');
 
-          var p = defaultPatient();
-          p.birthdate = patient.birthDate;
-          p.gender = gender;
-          p.fname = fname;
-          p.lname = lname;
-          p.height = getQuantityValueAndUnit(height[0]);
-		  p.weight = getQuantityValueAndUnit(weight[0]);
-		  p.temp = getQuantityValueAndUnit(temp[0]);
+			var p = defaultPatient();
+				p.birthdate = patient.birthDate;
+				p.gender = gender;
+				p.fname = fname;
+				p.lname = lname;
+				p.height = getQuantityValueAndUnit(height[0]);
+				p.weight = getQuantityValueAndUnit(weight[0]);
+				p.temp = getQuantityValueAndUnit(temp[0]);
 
-          if (typeof systolicbp != 'undefined')  {
-            p.systolicbp = systolicbp;
-          }
+			if (typeof systolicbp != 'undefined')  {
+				p.systolicbp = systolicbp;
+			}
 
-          if (typeof diastolicbp != 'undefined') {
-            p.diastolicbp = diastolicbp;
-          }
+			if (typeof diastolicbp != 'undefined') {
+				p.diastolicbp = diastolicbp;
+			}
 
-          p.hdl = getQuantityValueAndUnit(hdl[0]);
-          p.ldl = getQuantityValueAndUnit(ldl[0]);
-		  console.log("p")
-		  console.log(p)
-          ret.resolve(p);
-        });
+				p.hdl = getQuantityValueAndUnit(hdl[0]);
+				p.ldl = getQuantityValueAndUnit(ldl[0]);
+				console.log("p")
+				console.log(p)
+				ret.resolve(p);
+		});
 		
-		
-		*/
-		console.log("Log Info");
-		console.log("smart");
-		console.log(smart);
-		console.log(JSON.stringify(smart));
-		
-		console.log("patient");
-		console.log(patient);
-		console.log(JSON.stringify(patient));
-		
-		console.log("pt");
-		console.log(pt);
-		console.log(JSON.stringify(pt));
-		
-		console.log("obv");
-		console.log(obv);
-		console.log(JSON.stringify(obv));
-		
-		console.log("meds");
-		console.log(meds);
-		console.log(JSON.stringify(meds));
-		
-		
-		
+	
       } else {
         onError();
       }
